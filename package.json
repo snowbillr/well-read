@@ -4,5 +4,10 @@
   "devDependencies": {
     "vite": "^5.4.21",
     "vite-plugin-rails": "^0.5.0"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.20",
+    "stimulus-vite-helpers": "^3.1.0"
   }
 }
