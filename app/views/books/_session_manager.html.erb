@@ -1,4 +1,5 @@
 <!-- Progress -->
+<% if book.currently_reading? %>
 <div id="<%= dom_id book, :progress_display %>" class="mb-8 max-w-lg mx-auto">
   <div class="flex justify-between text-sm font-sans mb-2 text-deep-ink/70">
     <span>Page <%= book.current_page %></span>
@@ -12,6 +13,7 @@
     <%= progress.round %> % Complete
   </div>
 </div>
+<% end %>
 
 <!-- Main Action -->
 <div id="<%= dom_id book, :session_controls %>" class="text-center mb-12">

@@ -27,9 +27,53 @@
         <%= link_to "Manage Library", books_path, class: "inline-block border-b-2 border-deep-ink text-deep-ink font-bold hover:border-deep-ink/50 transition pb-0.5" %>
       </div>
     <% else %>
-      <div class="border border-deep-ink/10 p-12 rounded-sm text-center bg-white shadow-sm">
-        <p class="text-xl mb-6 font-serif text-deep-ink/70">No active reading sessions.</p>
-        <%= link_to "Go to Library", books_path, class: "bg-deep-ink text-cream px-6 py-3 rounded-sm font-bold hover:opacity-90 transition inline-block" %>
+      <!-- Empty State / Search -->
+      <div class="space-y-12">
+        <div class="text-center">
+           <h2 class="text-2xl font-serif font-bold mb-4">Ready to start something new?</h2>
+           
+           <!-- Search Form -->
+           <%= form_with url: root_path, method: :get, data: { controller: "search", turbo_frame: "want_to_read_results" }, class: "max-w-md mx-auto relative mb-8" do |f| %>
+             <div class="relative">
+               <%= f.text_field :query, 
+                   placeholder: "Search your library...", 
+                   data: { action: "input->search#submit" },
+                   class: "w-full border-deep-ink/20 focus:border-deep-ink focus:ring-0 rounded-full bg-white pl-12 pr-4 py-3 shadow-sm" 
+               %>
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-deep-ink/40">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+             </div>
+           <% end %>
+        </div>
+
+        <turbo-frame id="want_to_read_results">
+           <% if @want_to_read_books.any? %>
+             <div class="space-y-6">
+                <% @want_to_read_books.each do |book| %>
+                  <div class="bg-white border border-deep-ink/10 p-6 rounded shadow-sm hover:shadow-md transition duration-300 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="text-center md:text-left">
+                       <h3 class="text-xl font-bold font-serif mb-1"><%= book.title %></h3>
+                       <p class="opacity-80 font-sans text-sm"><%= book.author %></p>
+                    </div>
+                    
+                    <div id="<%= dom_id book, :session_controls %>">
+                      <%= button_to "Start Reading", book_path(book, book: { status: "currently_reading", started_at: Time.current }, redirect_to: root_path), method: :patch, data: { turbo_frame: "_top" }, class: "px-6 py-2 bg-deep-ink text-cream font-bold rounded-full text-sm hover:opacity-90 transition cursor-pointer" %>
+                    </div>
+                  </div>
+                <% end %>
+             </div>
+           <% elsif params[:query].present? %>
+             <div class="text-center py-12 opacity-60">
+               <p>No matching books found.</p>
+             </div>
+           <% end %>
+        </turbo-frame>
+
+        <div class="text-center pt-8 border-t border-deep-ink/10">
+          <p class="mb-4 text-deep-ink/60 italic">Or add a completely new volume.</p>
+          <%= link_to "Catalogue a New Book", new_book_path, class: "bg-white border border-deep-ink/20 text-deep-ink px-6 py-3 rounded-sm font-bold hover:bg-deep-ink/5 transition inline-block shadow-sm" %>
+        </div>
       </div>
     <% end %>
   </main>
