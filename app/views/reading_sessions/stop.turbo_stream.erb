@@ -1,5 +1,5 @@
-<%= turbo_stream.replace "session_controls" do %>
-  <div id="session_controls" class="text-center mb-12 bg-deep-ink/5 p-8 rounded-lg">
+<%= turbo_stream.replace dom_id(@book, :session_controls) do %>
+  <div id="<%= dom_id @book, :session_controls %>" class="text-center mb-12 bg-deep-ink/5 p-8 rounded-lg">
     <h3 class="font-serif text-xl mb-4 font-bold">Session Complete</h3>
     <p class="mb-6 font-mono text-lg">
       <% duration = @session.duration_seconds.to_i %>

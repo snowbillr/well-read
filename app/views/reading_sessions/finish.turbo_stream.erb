@@ -1,5 +1,5 @@
-<%= turbo_stream.replace "session_controls" do %>
-  <div id="session_controls" class="text-center mb-12">
+<%= turbo_stream.replace dom_id(@book, :session_controls) do %>
+  <div id="<%= dom_id @book, :session_controls %>" class="text-center mb-12">
     <% if @book.completed? %>
       <div class="p-6 bg-deep-ink text-cream rounded-sm mb-6">
         <h3 class="text-2xl font-serif font-bold mb-2">Volume Closed</h3>
@@ -22,8 +22,8 @@
   </div>
 <% end %>
 
-<%= turbo_stream.replace "progress_display" do %>
-  <div id="progress_display" class="mb-12 max-w-lg mx-auto">
+<%= turbo_stream.replace dom_id(@book, :progress_display) do %>
+  <div id="<%= dom_id @book, :progress_display %>" class="mb-12 max-w-lg mx-auto">
       <div class="flex justify-between text-sm font-sans mb-2 text-deep-ink/70">
         <span>Page <%= @book.current_page %></span>
         <span><%= @book.total_pages %> Pages</span>

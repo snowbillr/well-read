@@ -1,0 +1,33 @@
+<!-- Progress -->
+<div id="<%= dom_id book, :progress_display %>" class="mb-8 max-w-lg mx-auto">
+  <div class="flex justify-between text-sm font-sans mb-2 text-deep-ink/70">
+    <span>Page <%= book.current_page %></span>
+    <span><%= book.total_pages %> Pages</span>
+  </div>
+  <div class="w-full bg-deep-ink/5 h-2 rounded-full overflow-hidden">
+    <% progress = book.total_pages.to_i > 0 ? (book.current_page.to_f / book.total_pages * 100).clamp(0, 100) : 0 %>
+    <div class="bg-deep-ink h-full rounded-full transition-all duration-1000 ease-out" style="width: <%= progress %>%"></div>
+  </div>
+  <div class="text-center mt-2 text-xs text-deep-ink/40">
+    <%= progress.round %> % Complete
+  </div>
+</div>
+
+<!-- Main Action -->
+<div id="<%= dom_id book, :session_controls %>" class="text-center mb-12">
+  <% if book.currently_reading? %>
+    <%= form_with url: reading_sessions_path, method: :post, data: { turbo: true } do |f| %>
+      <%= f.hidden_field :book_id, value: book.id %>
+      <%= f.button class: "group relative inline-flex items-center justify-center px-8 py-4 bg-deep-ink text-cream font-bold rounded-full overflow-hidden transition-transform active:scale-95 shadow-lg hover:shadow-xl cursor-pointer" do %>
+        <span class="relative z-10 flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+          </svg>
+          Start Session
+        </span>
+      <% end %>
+    <% end %>
+  <% elsif book.want_to_read? %>
+      <%= button_to "Start Reading", book_path(book, book: { status: "currently_reading", started_at: Time.current }), method: :patch, class: "px-8 py-3 bg-deep-ink text-cream font-bold rounded-sm hover:opacity-90 transition cursor-pointer" %>
+  <% end %>
+</div>

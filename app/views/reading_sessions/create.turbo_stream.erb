@@ -1,5 +1,5 @@
-<%= turbo_stream.replace "session_controls" do %>
-  <div id="session_controls" class="text-center mb-12" data-controller="timer" data-timer-start-time-value="<%= @session.start_time.to_i * 1000 %>">
+<%= turbo_stream.replace dom_id(@book, :session_controls) do %>
+  <div id="<%= dom_id @book, :session_controls %>" class="text-center mb-12" data-controller="timer" data-timer-start-time-value="<%= @session.start_time.to_i * 1000 %>">
     <div class="mb-4">
       <span class="inline-block animate-pulse w-2 h-2 rounded-full bg-red-500 mr-2"></span>
       <span class="font-serif italic text-deep-ink/60">Session in progress...</span>
