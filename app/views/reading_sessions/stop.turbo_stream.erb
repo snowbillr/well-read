@@ -7,6 +7,12 @@
     </p>
 
     <%= form_with model: @book, url: reading_session_path(@session), method: :patch, class: "max-w-xs mx-auto", data: { turbo: true } do |f| %>
+      <% if @book.errors[:current_page].any? %>
+        <div class="mb-4 text-red-600 text-sm bg-red-50 p-2 rounded border border-red-200">
+          <%= @book.errors[:current_page].first %>
+        </div>
+      <% end %>
+
       <div class="mb-4">
         <%= f.label :current_page, "Current Page Number", class: "block text-sm font-bold mb-2 text-deep-ink/70" %>
         <%= f.number_field :current_page, class: "w-full text-center text-2xl font-bold border-deep-ink/20 focus:border-deep-ink focus:ring-0 rounded-sm bg-white px-4 py-2 shadow-sm", autofocus: true %>
