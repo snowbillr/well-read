@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  author: MyString
+  total_pages: 1
+  current_page: 1
+  isbn: MyString
+  status: MyString
+  rating: 1
+  review_text: MyText
+  started_at: 2026-01-01 14:51:02
+  finished_at: 2026-01-01 14:51:02
+
+two:
+  title: MyString
+  author: MyString
+  total_pages: 1
+  current_page: 1
+  isbn: MyString
+  status: MyString
+  rating: 1
+  review_text: MyText
+  started_at: 2026-01-01 14:51:02
+  finished_at: 2026-01-01 14:51:02

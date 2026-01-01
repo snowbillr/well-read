@@ -1,1 +1,13 @@
 @import "tailwindcss" source("../../");
+
+@theme {
+  --color-cream: #FDFBF7;
+  --color-deep-ink: #1A1F2C;
+  --font-serif: "Merriweather", serif;
+}
+
+@layer base {
+  body {
+    @apply bg-cream text-deep-ink font-serif antialiased;
+  }
+}

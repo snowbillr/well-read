@@ -10,5 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 0) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_01_195103) do
+  create_table "books", force: :cascade do |t|
+    t.string "author"
+    t.datetime "created_at", null: false
+    t.integer "current_page", default: 0
+    t.datetime "finished_at"
+    t.string "isbn"
+    t.integer "rating"
+    t.text "review_text"
+    t.datetime "started_at"
+    t.string "status", default: "want_to_read"
+    t.string "title"
+    t.integer "total_pages"
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reading_sessions", force: :cascade do |t|
+    t.integer "book_id", null: false
+    t.datetime "created_at", null: false
+    t.integer "duration_seconds"
+    t.integer "pages_read"
+    t.datetime "start_time"
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_reading_sessions_on_book_id"
+  end
+
+  add_foreign_key "reading_sessions", "books"
 end

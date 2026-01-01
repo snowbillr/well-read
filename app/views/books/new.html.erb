@@ -1,0 +1,10 @@
+<% content_for :title, "New Book" %>
+
+<div class="max-w-4xl mx-auto px-6 py-12">
+  <div class="mb-12 text-center">
+    <h1 class="text-4xl font-bold font-serif mb-4">Catalogue a Book</h1>
+    <%= link_to "Back to Library", books_path, class: "text-sm text-deep-ink/60 hover:text-deep-ink border-b border-transparent hover:border-deep-ink transition pb-0.5" %>
+  </div>
+
+  <%= render "form", book: @book %>
+</div>

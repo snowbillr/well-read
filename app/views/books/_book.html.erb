@@ -1,0 +1,28 @@
+<div id="<%= dom_id book %>" class="group relative bg-white border border-deep-ink/5 p-6 shadow-sm hover:shadow-md transition-all duration-300">
+  <div class="flex justify-between items-start mb-4">
+    <div>
+      <h3 class="text-xl font-bold font-serif leading-tight mb-1">
+        <%= link_to book.title, book, class: "hover:text-deep-ink/80 block" %>
+      </h3>
+      <p class="text-sm text-deep-ink/60 font-sans"><%= book.author %></p>
+    </div>
+    <% if book.currently_reading? %>
+      <span class="inline-block w-2 h-2 rounded-full bg-deep-ink mt-2" title="Currently Reading"></span>
+    <% end %>
+  </div>
+
+  <div class="space-y-2 mb-4">
+    <div class="w-full bg-deep-ink/5 h-1.5 rounded-full overflow-hidden">
+      <% progress = book.total_pages.to_i > 0 ? (book.current_page.to_f / book.total_pages * 100).clamp(0, 100) : 0 %>
+      <div class="bg-deep-ink h-full rounded-full" style="width: <%= progress %>%"></div>
+    </div>
+    <div class="flex justify-between text-xs font-sans text-deep-ink/50">
+      <span><%= book.current_page %> / <%= book.total_pages %> pages</span>
+      <span><%= progress.round %>%</span>
+    </div>
+  </div>
+
+  <div class="pt-4 border-t border-deep-ink/5 flex justify-between items-center opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+    <%= link_to "Details", book, class: "text-xs font-bold uppercase tracking-wider text-deep-ink/70 hover:text-deep-ink" %>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<% content_for :title, "Editing #{@book.title}" %>
+
+<div class="max-w-4xl mx-auto px-6 py-12">
+  <div class="mb-12 text-center">
+    <h1 class="text-4xl font-bold font-serif mb-4">Edit Entry</h1>
+    <div class="space-x-4 text-sm text-deep-ink/60">
+        <%= link_to "Cancel", @book, class: "hover:text-deep-ink border-b border-transparent hover:border-deep-ink transition pb-0.5" %>
+    </div>
+  </div>
+
+  <%= render "form", book: @book %>
+</div>

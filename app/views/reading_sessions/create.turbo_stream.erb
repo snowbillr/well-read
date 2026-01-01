@@ -1,0 +1,19 @@
+<%= turbo_stream.replace "session_controls" do %>
+  <div id="session_controls" class="text-center mb-12" data-controller="timer" data-timer-start-time-value="<%= @session.start_time.to_i * 1000 %>">
+    <div class="mb-4">
+      <span class="inline-block animate-pulse w-2 h-2 rounded-full bg-red-500 mr-2"></span>
+      <span class="font-serif italic text-deep-ink/60">Session in progress...</span>
+    </div>
+    
+    <div class="text-5xl font-mono mb-8 font-bold text-deep-ink" data-timer-target="output">
+      00:00:00
+    </div>
+
+    <%= form_with url: reading_session_path(@session), method: :patch, data: { turbo: true } do |f| %>
+      <%= hidden_field_tag :stop, true %>
+      <%= f.button class: "px-8 py-4 bg-white border border-deep-ink/20 text-deep-ink font-bold rounded-full hover:bg-deep-ink/5 transition shadow-sm hover:shadow cursor-pointer" do %>
+        Stop Session
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

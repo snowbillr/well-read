@@ -1,0 +1,18 @@
+<%= turbo_stream.replace "session_controls" do %>
+  <div id="session_controls" class="text-center mb-12 bg-deep-ink/5 p-8 rounded-lg">
+    <h3 class="font-serif text-xl mb-4 font-bold">Session Complete</h3>
+    <p class="mb-6 font-mono text-lg">
+      <% duration = @session.duration_seconds.to_i %>
+      <%= duration / 60 %>m <%= duration % 60 %>s
+    </p>
+
+    <%= form_with model: @book, url: reading_session_path(@session), method: :patch, class: "max-w-xs mx-auto", data: { turbo: true } do |f| %>
+      <div class="mb-4">
+        <%= f.label :current_page, "Current Page Number", class: "block text-sm font-bold mb-2 text-deep-ink/70" %>
+        <%= f.number_field :current_page, class: "w-full text-center text-2xl font-bold border-deep-ink/20 focus:border-deep-ink focus:ring-0 rounded-sm bg-white px-4 py-2 shadow-sm", autofocus: true %>
+      </div>
+      
+      <%= f.submit "Update Progress", class: "w-full bg-deep-ink text-cream py-3 rounded-sm font-bold hover:opacity-90 transition cursor-pointer shadow-md" %>
+    <% end %>
+  </div>
+<% end %>
