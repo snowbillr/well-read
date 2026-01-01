@@ -1,0 +1,1 @@
+This is a Rails 8, Turbo, and Stimulus project. Use best practices when developing in this codebase. Prefer leveraging framework functionality to creating custom functionality. Use existing patterns in the codebase when writing new code.
