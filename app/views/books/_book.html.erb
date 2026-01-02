@@ -1,14 +1,24 @@
 <div id="<%= dom_id book %>" class="group relative bg-white border border-deep-ink/5 p-6 shadow-sm hover:shadow-md transition-all duration-300">
-  <div class="flex justify-between items-start mb-4">
-    <div>
-      <h3 class="text-xl font-bold font-serif leading-tight mb-1">
-        <%= link_to book.title, book, class: "hover:text-deep-ink/80 block" %>
-      </h3>
-      <p class="text-sm text-deep-ink/60 font-sans"><%= book.author %></p>
-    </div>
-    <% if book.currently_reading? %>
-      <span class="inline-block w-2 h-2 rounded-full bg-deep-ink mt-2" title="Currently Reading"></span>
+  <div class="flex gap-6 items-start mb-4">
+    <% if book.cover_image_url.present? %>
+      <div class="w-16 h-24 flex-shrink-0 shadow-sm rounded-sm overflow-hidden bg-deep-ink/5">
+        <img src="<%= book.cover_image_url %>" alt="<%= book.title %>" class="w-full h-full object-cover">
+      </div>
     <% end %>
+    
+    <div class="flex-1">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-xl font-bold font-serif leading-tight mb-1">
+            <%= link_to book.title, book, class: "hover:text-deep-ink/80 block" %>
+          </h3>
+          <p class="text-sm text-deep-ink/60 font-sans"><%= book.author %></p>
+        </div>
+        <% if book.currently_reading? %>
+          <span class="inline-block w-2 h-2 rounded-full bg-deep-ink mt-2" title="Currently Reading"></span>
+        <% end %>
+      </div>
+    </div>
   </div>
 
   <div class="space-y-2 mb-4">

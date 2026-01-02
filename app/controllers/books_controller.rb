@@ -46,12 +46,22 @@ class BooksController < ApplicationController
     redirect_to books_path, notice: "Book was successfully destroyed.", status: :see_other
   end
 
+  # GET /books/external_search
+  def external_search
+    @results = GoogleBooksService.search(params[:query])
+
+    respond_to do |format|
+      format.html { render layout: false }
+      format.turbo_stream
+    end
+  end
+
   private
     def set_book
       @book = Book.find(params.expect(:id))
     end
 
     def book_params
-      params.expect(book: [ :title, :author, :total_pages, :current_page, :isbn, :status, :rating, :review_text, :started_at, :finished_at ])
+      params.expect(book: [ :title, :author, :total_pages, :current_page, :isbn, :status, :rating, :review_text, :started_at, :finished_at, :cover_image_url ])
     end
 end

@@ -1,9 +1,24 @@
 <% content_for :title, "New Book" %>
 
-<div class="max-w-4xl mx-auto px-6 py-12">
+<div class="max-w-4xl mx-auto px-6 py-12" data-controller="book-lookup" data-book-lookup-url="<%= external_search_books_path %>">
   <div class="mb-12 text-center">
     <h1 class="text-4xl font-bold font-serif mb-4">Catalogue a Book</h1>
     <%= link_to "Back to Library", books_path, class: "text-sm text-deep-ink/60 hover:text-deep-ink border-b border-transparent hover:border-deep-ink transition pb-0.5" %>
+  </div>
+
+  <div class="max-w-lg mx-auto mb-12">
+    <label for="book_search" class="block text-sm font-bold mb-2 text-deep-ink/80">Search Google Books</label>
+    <div class="relative">
+      <input type="text" 
+             id="book_search" 
+             placeholder="Search by title, author, or ISBN..." 
+             class="w-full border-deep-ink/20 focus:border-deep-ink focus:ring-0 rounded-sm bg-white px-4 py-3 shadow-sm"
+             data-book-lookup-target="input"
+             data-action="input->book-lookup#search">
+      
+      <turbo-frame id="external_search_results" data-book-lookup-target="results" class="absolute top-full left-0 z-50 w-full block"></turbo-frame>
+    </div>
+    <p class="text-xs text-deep-ink/40 mt-2">Searching will auto-populate the form below.</p>
   </div>
 
   <%= render "form", book: @book %>

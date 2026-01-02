@@ -1,0 +1,37 @@
+<div class="space-y-2 mt-2 max-h-96 overflow-y-auto border border-deep-ink/10 rounded bg-white shadow-lg">
+  <% if results.any? %>
+    <% results.each do |result| %>
+      <button type="button" 
+              class="w-full text-left p-4 hover:bg-cream transition flex gap-4 border-b border-deep-ink/5 last:border-0"
+              data-action="click->book-lookup#select"
+              data-book-title="<%= result[:title] %>"
+              data-book-author="<%= result[:author] %>"
+              data-book-isbn="<%= result[:isbn] %>"
+              data-book-total-pages="<%= result[:total_pages] %>"
+              data-book-cover-url="<%= result[:cover_image_url] %>">
+        
+        <% if result[:cover_image_url] %>
+          <img src="<%= result[:cover_image_url] %>" alt="<%= result[:title] %>" class="w-12 h-18 object-cover shadow-sm rounded-sm flex-shrink-0">
+        <% else %>
+          <div class="w-12 h-18 bg-deep-ink/5 flex items-center justify-center rounded-sm flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-deep-ink/20">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+            </svg>
+          </div>
+        <% end %>
+
+        <div>
+          <h4 class="font-bold text-deep-ink line-clamp-1"><%= result[:title] %></h4>
+          <p class="text-sm text-deep-ink/60"><%= result[:author] %></p>
+          <% if result[:total_pages] %>
+            <p class="text-xs text-deep-ink/40 mt-1"><%= result[:total_pages] %> pages</p>
+          <% end %>
+        </div>
+      </button>
+    <% end %>
+  <% else %>
+    <div class="p-8 text-center text-deep-ink/40 italic">
+      No books found. Try a different search term.
+    </div>
+  <% end %>
+</div>

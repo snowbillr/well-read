@@ -12,25 +12,33 @@
 
   <div>
     <%= form.label :title, class: "block text-sm font-bold mb-2 text-deep-ink/80" %>
-    <%= form.text_field :title, class: "w-full border-deep-ink/20 focus:border-deep-ink focus:ring-0 rounded-sm bg-white px-4 py-3 shadow-sm" %>
+    <%= form.text_field :title, 
+        class: "w-full border-deep-ink/20 focus:border-deep-ink focus:ring-0 rounded-sm bg-white px-4 py-3 shadow-sm",
+        data: { book_lookup_target: "title" } %>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <div>
       <%= form.label :author, class: "block text-sm font-bold mb-2 text-deep-ink/80" %>
-      <%= form.text_field :author, class: "w-full border-deep-ink/20 focus:border-deep-ink focus:ring-0 rounded-sm bg-white px-4 py-3 shadow-sm" %>
+      <%= form.text_field :author, 
+          class: "w-full border-deep-ink/20 focus:border-deep-ink focus:ring-0 rounded-sm bg-white px-4 py-3 shadow-sm",
+          data: { book_lookup_target: "author" } %>
     </div>
 
     <div>
       <%= form.label :isbn, "ISBN", class: "block text-sm font-bold mb-2 text-deep-ink/80" %>
-      <%= form.text_field :isbn, class: "w-full border-deep-ink/20 focus:border-deep-ink focus:ring-0 rounded-sm bg-white px-4 py-3 shadow-sm" %>
+      <%= form.text_field :isbn, 
+          class: "w-full border-deep-ink/20 focus:border-deep-ink focus:ring-0 rounded-sm bg-white px-4 py-3 shadow-sm",
+          data: { book_lookup_target: "isbn" } %>
     </div>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <div>
       <%= form.label :total_pages, class: "block text-sm font-bold mb-2 text-deep-ink/80" %>
-      <%= form.number_field :total_pages, class: "w-full border-deep-ink/20 focus:border-deep-ink focus:ring-0 rounded-sm bg-white px-4 py-3 shadow-sm" %>
+      <%= form.number_field :total_pages, 
+          class: "w-full border-deep-ink/20 focus:border-deep-ink focus:ring-0 rounded-sm bg-white px-4 py-3 shadow-sm",
+          data: { book_lookup_target: "totalPages" } %>
     </div>
 
     <div>
@@ -39,6 +47,26 @@
     </div>
   </div>
   
+  <%= form.hidden_field :cover_image_url, data: { book_lookup_target: "coverUrl" } %>
+  
+  <div class="flex items-center gap-6 p-4 bg-cream/50 border border-deep-ink/5 rounded-sm">
+    <div class="w-16 h-24 bg-deep-ink/5 flex items-center justify-center rounded-sm overflow-hidden flex-shrink-0">
+      <img src="<%= book.cover_image_url %>" 
+           alt="Cover Preview" 
+           class="<%= 'hidden' unless book.cover_image_url.present? %> w-full h-full object-cover"
+           data-book-lookup-target="coverPreview">
+      <% unless book.cover_image_url.present? %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-deep-ink/10">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+        </svg>
+      <% end %>
+    </div>
+    <div>
+      <p class="text-sm font-bold text-deep-ink/80">Cover Preview</p>
+      <p class="text-xs text-deep-ink/40 italic">Cover will be saved automatically when you select a book.</p>
+    </div>
+  </div>
+
   <% if book.persisted? %>
      <div>
        <%= form.label :current_page, class: "block text-sm font-bold mb-2 text-deep-ink/80" %>

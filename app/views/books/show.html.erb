@@ -8,13 +8,21 @@
        <div class="mb-6 p-4 bg-emerald-50 text-emerald-900 rounded text-sm"><%= notice %></div>
     <% end %>
 
-    <div class="text-center mb-8">
-      <h1 class="text-4xl md:text-5xl font-bold font-serif mb-2 leading-tight"><%= @book.title %></h1>
-      <p class="text-xl text-deep-ink/60 font-sans"><%= @book.author %></p>
-      <div class="mt-4">
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-deep-ink/5 text-deep-ink/70 uppercase tracking-wide">
-          <%= @book.status.humanize.gsub('Dnf', 'DNF') %>
-        </span>
+    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start mb-8">
+      <% if @book.cover_image_url.present? %>
+        <div class="w-48 md:w-56 flex-shrink-0 shadow-2xl rounded-sm overflow-hidden">
+          <img src="<%= @book.cover_image_url %>" alt="<%= @book.title %>" class="w-full h-auto">
+        </div>
+      <% end %>
+
+      <div class="<%= 'text-center md:text-left' if @book.cover_image_url.present? %> flex-1">
+        <h1 class="text-4xl md:text-5xl font-bold font-serif mb-2 leading-tight"><%= @book.title %></h1>
+        <p class="text-xl text-deep-ink/60 font-sans"><%= @book.author %></p>
+        <div class="mt-4">
+          <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-deep-ink/5 text-deep-ink/70 uppercase tracking-wide">
+            <%= @book.status.humanize.gsub('Dnf', 'DNF') %>
+          </span>
+        </div>
       </div>
     </div>
 
