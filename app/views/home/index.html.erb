@@ -1,9 +1,4 @@
 <div class="max-w-3xl mx-auto px-6 py-12">
-  <header class="mb-12 text-center">
-    <h1 class="text-4xl font-bold mb-2 font-serif">Well Read</h1>
-    <p class="text-lg opacity-80 italic font-serif">A digital sanctuary for your library.</p>
-  </header>
-
   <main>
     <% if @books.any? %>
       <div class="space-y-12 mb-16">
@@ -11,7 +6,7 @@
           <div class="bg-white border border-deep-ink/10 p-8 rounded shadow-sm hover:shadow-md transition duration-300 relative overflow-hidden">
             <div class="flex flex-col md:flex-row gap-8 items-center mb-6">
               <% if book.cover_image_url.present? %>
-                <div class="w-24 md:w-32 flex-shrink-0 shadow-lg rounded-sm overflow-hidden bg-deep-ink/5">
+                <div class="w-24 md:w-32 shrink-0 shadow-lg rounded-sm overflow-hidden bg-deep-ink/5">
                    <img src="<%= book.cover_image_url %>" alt="<%= book.title %>" class="w-full h-auto">
                 </div>
               <% end %>
@@ -115,12 +110,6 @@
           <span class="text-xs uppercase tracking-widest opacity-60">Day Streak</span>
         </div>
       </div>
-    </div>
-
-    <!-- Footer Action -->
-    <div class="text-center">
-      <p class="mb-4 text-deep-ink/60 italic">Catalog more volumes or review your archives.</p>
-      <%= link_to "Manage Library", books_path, class: "inline-block border-b-2 border-deep-ink text-deep-ink font-bold hover:border-deep-ink/50 transition pb-0.5" %>
     </div>
   </main>
 </div>
