@@ -5,7 +5,6 @@ one:
   author: MyString
   total_pages: 1
   current_page: 1
-  isbn: MyString
   status: MyString
   rating: 1
   review_text: MyText
@@ -17,7 +16,6 @@ two:
   author: MyString
   total_pages: 1
   current_page: 1
-  isbn: MyString
   status: MyString
   rating: 1
   review_text: MyText

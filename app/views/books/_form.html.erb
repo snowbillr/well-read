@@ -17,20 +17,11 @@
         data: { book_lookup_target: "title" } %>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div>
-      <%= form.label :author, class: "block text-sm font-bold mb-2 text-deep-ink/80" %>
-      <%= form.text_field :author, 
-          class: "w-full border-deep-ink/20 focus:border-deep-ink focus:ring-0 rounded-sm bg-white px-4 py-3 shadow-sm",
-          data: { book_lookup_target: "author" } %>
-    </div>
-
-    <div>
-      <%= form.label :isbn, "ISBN", class: "block text-sm font-bold mb-2 text-deep-ink/80" %>
-      <%= form.text_field :isbn, 
-          class: "w-full border-deep-ink/20 focus:border-deep-ink focus:ring-0 rounded-sm bg-white px-4 py-3 shadow-sm",
-          data: { book_lookup_target: "isbn" } %>
-    </div>
+  <div>
+    <%= form.label :author, class: "block text-sm font-bold mb-2 text-deep-ink/80" %>
+    <%= form.text_field :author, 
+        class: "w-full border-deep-ink/20 focus:border-deep-ink focus:ring-0 rounded-sm bg-white px-4 py-3 shadow-sm",
+        data: { book_lookup_target: "author" } %>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

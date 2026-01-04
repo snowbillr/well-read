@@ -13,7 +13,7 @@ A. Library Management
 
     Entity: Book
 
-    Attributes: Title, Author, Total Pages, ISBN (optional), Cover Image (optional).
+    Attributes: Title, Author, Total Pages, Cover Image (optional).
 
     Status Tracking: Books should be categorized as Want to Read, Currently Reading, Completed, or DNF (did not finish).
 

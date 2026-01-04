@@ -9,7 +9,7 @@
 ## Phase 2: Core Data Models
 - [x] **Book Model**:
     - [x] Generate `Book` scaffold/model.
-        - Attributes: `id:bigint`, `title:string`, `author:string`, `total_pages:integer`, `current_page:integer` (default: 0), `isbn:string`, `status:string` (enum: want_to_read, currently_reading, completed, dnf), `rating:integer`, `review_text:text`, `started_at:datetime`, `finished_at:datetime`.
+        - Attributes: `id:bigint`, `title:string`, `author:string`, `total_pages:integer`, `current_page:integer` (default: 0), `status:string` (enum: want_to_read, currently_reading, completed, dnf), `rating:integer`, `review_text:text`, `started_at:datetime`, `finished_at:datetime`.
     - [x] Add validations (presence of title/author/total_pages).
     - [x] Implement status enum and logic.
     - [x] Configure ActiveStorage for optional Cover Image. (Skipped for MVP focus)

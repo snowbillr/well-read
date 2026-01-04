@@ -23,7 +23,6 @@ class GoogleBooksService
         title: volume_info["title"],
         author: volume_info["authors"]&.join(", "),
         total_pages: volume_info["pageCount"],
-        isbn: extract_isbn(volume_info["industryIdentifiers"]),
         cover_image_url: volume_info["imageLinks"]&.[]("thumbnail")&.gsub("http://", "https://"),
         description: volume_info["description"]
       }
@@ -48,12 +47,5 @@ class GoogleBooksService
       # but Faraday doesn't expose CRL flags directly easily.
       # Usually, Faraday/OpenSSL on macOS uses the system store which handles this.
     end
-  end
-
-  def self.extract_isbn(identifiers)
-    return nil unless identifiers
-    isbn_13 = identifiers.find { |id| id["type"] == "ISBN_13" }
-    isbn_10 = identifiers.find { |id| id["type"] == "ISBN_10" }
-    (isbn_13 || isbn_10)&.[]("identifier")
   end
 end

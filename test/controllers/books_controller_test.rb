@@ -17,7 +17,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
 
   test "should create book" do
     assert_difference("Book.count") do
-      post books_url, params: { book: { author: @book.author, current_page: @book.current_page, finished_at: @book.finished_at, isbn: @book.isbn, rating: @book.rating, review_text: @book.review_text, started_at: @book.started_at, status: @book.status, title: @book.title, total_pages: @book.total_pages } }
+      post books_url, params: { book: { author: @book.author, current_page: @book.current_page, finished_at: @book.finished_at, rating: @book.rating, review_text: @book.review_text, started_at: @book.started_at, status: @book.status, title: @book.title, total_pages: @book.total_pages } }
     end
 
     assert_redirected_to book_url(Book.last)
@@ -34,7 +34,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update book" do
-    patch book_url(@book), params: { book: { author: @book.author, current_page: @book.current_page, finished_at: @book.finished_at, isbn: @book.isbn, rating: @book.rating, review_text: @book.review_text, started_at: @book.started_at, status: @book.status, title: @book.title, total_pages: @book.total_pages } }
+    patch book_url(@book), params: { book: { author: @book.author, current_page: @book.current_page, finished_at: @book.finished_at, rating: @book.rating, review_text: @book.review_text, started_at: @book.started_at, status: @book.status, title: @book.title, total_pages: @book.total_pages } }
     assert_redirected_to book_url(@book)
   end
 

@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["input", "results", "form", "title", "author", "isbn", "totalPages", "coverUrl", "coverPreview"]
+  static targets = ["input", "results", "form", "title", "author", "totalPages", "coverUrl", "coverPreview"]
 
   search() {
     clearTimeout(this.timeout)
@@ -25,7 +25,6 @@ export default class extends Controller {
     
     this.titleTarget.value = data.bookTitle || ""
     this.authorTarget.value = data.bookAuthor || ""
-    this.isbnTarget.value = data.bookIsbn || ""
     this.totalPagesTarget.value = data.bookTotalPages || ""
     this.coverUrlTarget.value = data.bookCoverUrl || ""
     
