@@ -46,8 +46,8 @@
       <% end %>
 
       <nav class="flex items-center gap-6">
-        <%= link_to "Read", root_path, class: "text-sm font-bold font-serif text-deep-ink hover:opacity-70 transition" %>
-        <%= link_to "Library", books_path, class: "text-sm font-bold font-serif text-deep-ink hover:opacity-70 transition" %>
+        <%= link_to "Read", root_path, class: active_nav_link_class(root_path) %>
+        <%= link_to "Library", books_path, class: active_nav_link_class(books_path) %>
       </nav>
     </header>
 
